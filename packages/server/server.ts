@@ -2,8 +2,8 @@ import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import express from 'express';
 import http from 'http';
-import { typeDefs } from './src/schema';
-import { resolvers } from './src/resolvers';
+import { resolvers } from './src/graphql/resolvers';
+import { typeDefs } from './src/graphql/schema';
 
 async function startApolloServer(typeDefs: any, resolvers: any) {
   const app = express();
