@@ -2,11 +2,13 @@ import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import express from 'express';
 import http from 'http';
+import cors from 'cors';
 import { resolvers } from './src/graphql/resolvers';
 import { typeDefs } from './src/graphql/schema';
 
 async function startApolloServer(typeDefs: any, resolvers: any) {
   const app = express();
+  app.use(cors());
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     typeDefs,

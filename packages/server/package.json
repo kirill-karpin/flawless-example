@@ -8,7 +8,7 @@
     "migrate:up:dev": "knex migrate:up",
     "migrate:down:dev": "knex migrate:down",
     "start": "npm run migrate && node server.js",
-    "start:dev": "NODE_ENV=development ts-node-dev --respawn --transpile-only server.ts | bunyan"
+    "start:dev": "ts-node-dev --respawn --transpile-only server.ts | bunyan"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
     "bcryptjs": "^2.4.3",
     "bunyan": "^1.8.15",
     "config": "^3.3.7",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "graphql": "^15.8.0",
     "knex": "^2.1.0",

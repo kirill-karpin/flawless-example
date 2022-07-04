@@ -12,6 +12,13 @@ const books = [
 export const resolvers = {
   Query: {
     books: (): any => books,
+    me: (): any => {
+      return {
+        name: 'Иван',
+        surname: 'Иванов',
+        patronymic: 'Иванович',
+      };
+    },
   },
   Mutation: {
     singIn: (parent: any, args: any): any => {

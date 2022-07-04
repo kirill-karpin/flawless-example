@@ -1,6 +1,5 @@
 import React, { lazy } from 'react';
-import { Router } from 'react-router';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { GlobalStyle } from './GlobalStyle';
 import { ThemeProvider } from 'styled-components';
@@ -19,15 +18,15 @@ export const App: React.FC = () => {
   return (
     <React.StrictMode>
       <ThemeProvider theme={defaultTheme}>
-        <Router key={'main-app-key'} navigator={history} location={{}}>
+        <BrowserRouter key={'main-app-key'}>
           <React.Suspense fallback={<Loader />}>
             <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/profile" element={<Personal />} />
+              <Route path="profile" element={<Personal />} />
+              <Route path="auth" element={<Auth />} />
+              <Route index element={<Main />} />
             </Routes>
           </React.Suspense>
-        </Router>
+        </BrowserRouter>
         <GlobalStyle />
       </ThemeProvider>
     </React.StrictMode>

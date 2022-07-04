@@ -23,6 +23,4 @@ i18n
     },
   });
 
-export const useT = () => {};
-
 export default i18n;

@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
-  input AuthInput {
+  input SingInInput {
     login: String
     password: String
   }
@@ -14,10 +14,17 @@ export const typeDefs = gql`
     title: String
     author: String
   }
+  type Profile {
+    name: String
+    patronymic: String
+    surname: String
+  }
+
   type Query {
+    me: Profile
     books: [Book]
   }
   type Mutation {
-    singIn(input: AuthInput!): Auth
+    singIn(input: SingInInput!): Auth
   }
 `;
