@@ -21,8 +21,8 @@ export const App: React.FC = () => {
         <BrowserRouter key={'main-app-key'}>
           <React.Suspense fallback={<Loader />}>
             <Routes>
-              <Route path="profile" element={<Personal />} />
-              <Route path="auth" element={<Auth />} />
+              <Route path="personal" element={<Personal />} />
+              <Route path="sign-in" element={<Auth />} />
               <Route index element={<Main />} />
             </Routes>
           </React.Suspense>

@@ -2,9 +2,11 @@ import React, { useCallback } from 'react';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 
-import { Form, Title } from './Auth.styled';
+import { FormContainerStyled } from './Auth.styled';
 import { useSingIn } from '../../lib/hooks/use-auth';
 import { useNavigate } from 'react-router-dom';
+import { MainLayout } from '../../components/MainLayout/MainLayout';
+import { Button, FormControl, Input, InputLabel, Toolbar, Typography } from '@mui/material';
 
 export const Auth: React.FC = () => {
   const { t } = useTranslation();
@@ -22,7 +24,7 @@ export const Auth: React.FC = () => {
         },
       })
         .then(() => {
-          navigate('/profile');
+          navigate('/personal');
         })
         .catch(e => {
           alert(e);
@@ -32,34 +34,58 @@ export const Auth: React.FC = () => {
   );
 
   return (
-    <Form>
-      <Title>{t(`Авторизация`)}</Title>
-      <Formik initialValues={{ login: '', password: '' }} onSubmit={handleSignIn}>
-        {props => (
-          <form onSubmit={props.handleSubmit}>
-            <input
-              type="text"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.login}
-              placeholder={t(`Логин`)}
-              name="login"
-            />
-            <input
-              type="text"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.password}
-              placeholder={t(`Пароль`)}
-              name="password"
-            />
-            {(props.errors.login || props.errors.password) && (
-              <div id="feedback">{t(`Не правильный логин или пароль`)}</div>
-            )}
-            <button type="submit">Отправить</button>
-          </form>
-        )}
-      </Formik>
-    </Form>
+    <MainLayout
+      appBar={
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {t('Sign In')}
+          </Typography>
+          <Button color="inherit" href={'/'}>
+            {t('Back')}
+          </Button>
+        </Toolbar>
+      }
+    >
+      <FormContainerStyled>
+        <Typography variant="h3" alignContent={'center'}>
+          {t(`Sign In`)}
+        </Typography>
+        <Formik initialValues={{ login: '', password: '' }} onSubmit={handleSignIn}>
+          {props => (
+            <form onSubmit={props.handleSubmit}>
+              <FormControl variant="standard">
+                <InputLabel htmlFor="component-error">{t(`Login`)}</InputLabel>
+                <Input
+                  id="login"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.login}
+                  placeholder={t(`Login`)}
+                  name="login"
+                  aria-describedby="component-error-text"
+                />
+              </FormControl>
+              <br />
+              <FormControl variant="standard">
+                <InputLabel htmlFor="component-error">{t(`Password`)}</InputLabel>
+                <Input
+                  id="password"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.password}
+                  placeholder={t(`Password`)}
+                  name="password"
+                  aria-describedby="component-error-text"
+                />
+              </FormControl>
+              <br />
+              <Button variant="contained" type={'submit'}>
+                {t('Sign In')}
+              </Button>
+            </form>
+          )}
+        </Formik>
+      </FormContainerStyled>
+    </MainLayout>
   );
 };

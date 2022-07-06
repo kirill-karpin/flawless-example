@@ -14,5 +14,5 @@ export const LoaderStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.green};
+  background-color: ${({ theme }) => theme.white};
 `;
